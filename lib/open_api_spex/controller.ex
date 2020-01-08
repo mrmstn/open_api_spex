@@ -101,6 +101,11 @@ defmodule OpenApiSpex.Controller do
       def open_api_operation(name),
         do: unquote(__MODULE__).__api_operation__(__MODULE__, name)
 
+      @spec open_api_operation(atom(), atom()) :: OpenApiSpex.Operation.t()
+      def open_api_operation(name, _verb),
+        do: unquote(__MODULE__).open_api_operation(name)
+
+      defoverridable open_api_operation: 2
       defoverridable open_api_operation: 1
     end
   end

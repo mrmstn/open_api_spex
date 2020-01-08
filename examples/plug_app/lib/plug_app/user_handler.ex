@@ -11,7 +11,7 @@ defmodule PlugApp.UserHandler do
     plug OpenApiSpex.Plug.Validate
     plug :index
 
-    def open_api_operation(_) do
+    def open_api_operation(_, _) do
       %Operation{
         tags: ["users"],
         summary: "List users",
@@ -46,7 +46,7 @@ defmodule PlugApp.UserHandler do
     plug :load
     plug :show
 
-    def open_api_operation(_) do
+    def open_api_operation(_, _) do
       %Operation{
         tags: ["users"],
         summary: "Show user",
@@ -94,7 +94,7 @@ defmodule PlugApp.UserHandler do
     plug OpenApiSpex.Plug.Validate
     plug :create
 
-    def open_api_operation(_) do
+    def open_api_operation(_, _) do
       %Operation{
         tags: ["users"],
         summary: "Create user",

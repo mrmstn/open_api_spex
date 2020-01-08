@@ -10,5 +10,13 @@ defmodule OpenApiSpex.PathsTest do
         "/api/users" => %PathItem{},
       } = paths
     end
+
+    test "resource controller" do
+      paths = Paths.from_router(Router) |> IO.inspect()
+
+      assert %{
+               "/api/users" => %PathItem{}
+             } = paths
+    end
   end
 end

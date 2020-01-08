@@ -7,8 +7,17 @@ defmodule PhoenixAppWeb.UserController do
 
   plug OpenApiSpex.Plug.CastAndValidate
 
-  def open_api_operation(action) do
-    apply(__MODULE__, :"#{action}_operation", [])
+  def open_api_operation(action, verb) do
+    operation =
+      case verb do
+        _ when verb in [:put, :patch] ->
+          String.to_existing_atom("#{action}_#{verb}_operation")
+
+        _ ->
+          String.to_existing_atom("#{action}_operation")
+      end
+
+    apply(__MODULE__, operation, [])
   end
 
   def index_operation() do
